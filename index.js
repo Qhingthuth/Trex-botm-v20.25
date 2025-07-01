@@ -194,7 +194,7 @@ function savePersistentData(data) {
 // Load persistent data at startup
 const persistentData = loadPersistentData();
 
-// ======== ADD CREATOR PROTECTION HERE ========
+
 const CREATOR_NAME = "Hassan";
 let creatorName = CREATOR_NAME;
 
@@ -206,7 +206,6 @@ function protectCreatorName() {
   }
 }
 
-// Display creator name at startup (now using the properly initialized chalk)
 console.log(chalk.blueBright(`\n========================================`));
 console.log(chalk.blueBright(`=                                      =`));
 console.log(chalk.blueBright(`=        BOT CREATOR: ${CREATOR_NAME}${' '.repeat(15 - CREATOR_NAME.length)}=`));
@@ -215,9 +214,7 @@ console.log(chalk.blueBright(`========================================\n`));
 
 // Periodic creator name checks
 setInterval(protectCreatorName, 60000); // Check every minute
-// ======== END OF CREATOR PROTECTION ========
 
-// Define defaultEmojiTranslate early so it's accessible globally and for config.json init
 const defaultEmojiTranslate = "🌐";
 
 // Global adminMode object - initialized from persistent data
