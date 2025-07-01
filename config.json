@@ -59,7 +59,7 @@
   "randomActivity": { "status": true, "intervalMin": 60, "intervalMax": 180 },
   "autoRestart": {
     "enabled": true,
-    "schedule": "0 */6 * * *", // Every 6 hours
+    "schedule": "0 */6 * * *", 
     "notifyAdmins": true
   }
 };
