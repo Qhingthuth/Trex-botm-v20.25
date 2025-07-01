@@ -1,4 +1,3 @@
-const defaultConfigContent = {
   "version": "1.0.1",
   "language": "en",
   "email": "",
