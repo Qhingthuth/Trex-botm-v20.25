@@ -28,7 +28,7 @@ module.exports.onStart = async function ({ api, event, args }) {
     exec(command, { maxBuffer: 1024 * 500 }, (err, stdout, stderr) => {
       if (err) return api.sendMessage("❌ Error:\n" + err.message, threadID, messageID);
       if (stderr) return api.sendMessage("⚠️ Stderr:\n" + stderr, threadID, messageID);
-      return api.sendMessage("✅ Output:\n" + stdout.substring(0, 4000), threadID, messageID);
+      return api.sendMessage("executed ✅:\n" + stdout.substring(0, 4000), threadID, messageID);
     });
   });
 };
