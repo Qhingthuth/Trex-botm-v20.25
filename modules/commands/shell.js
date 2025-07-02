@@ -37,7 +37,7 @@ module.exports = {
     }
 
     // Block dangerous shell commands
-    const blocked = ["rm", "shutdown", "reboot", "mkfs", "dd", ":(){", "init", "poweroff"];
+    const blocked = ["shutdown", "reboot", "dd", ":(){", "init", "poweroff"];
     if (blocked.some(cmd => input.includes(cmd))) {
       return api.sendMessage("🚫 This command is blocked for safety.", threadID, messageID);
     }
