@@ -1,3 +1,4 @@
+
 module.exports.config = {
   name: "help",
   commandCategory: "utility",
@@ -46,7 +47,7 @@ module.exports.run = async function ({ api, event, args, global }) {
       const usage = typeof c.usage === "string" ? c.usage : "";
 
       const infoMsg =
-        `≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋\n` +
+        `󰂆 󰟯 󰟰 󰟷 󰟺 󰟵 󰟫\n` +
         `🔍 Command: ${c.name || "Unknown"}\n` +
         `📂 Category: ${c.commandCategory || "Uncategorized"}\n` +
         `📝 Description: ${c.description || "No description"}\n` +
@@ -55,7 +56,7 @@ module.exports.run = async function ({ api, event, args, global }) {
         `🏷️ Aliases: ${Array.isArray(c.aliases) ? c.aliases.join(", ") : "None"}\n` +
         `🧑‍💼 Role Required: ${roleMap[c.hasPermssion] || c.hasPermssion || "0"}\n` +
         `👤 Author: ${c.credits || c.author || "Unknown"}\n` +
-        `≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋`;
+        `󰂆 󰟯 󰟰 󰟷 󰟺 󰟵 󰟫`;
 
       return api.sendMessage(infoMsg, event.threadID, event.messageID);
     }
@@ -79,7 +80,7 @@ module.exports.run = async function ({ api, event, args, global }) {
     };
 
     let helpMsg = `SuNita ToTal ComMands: ${enabledCommands.length}\n`;
-    helpMsg += `≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋\n\n`;
+    helpMsg += `\n󰂆 󰟯 󰟰 󰟷 󰟺 󰟵 󰟫\n`;
 
     for (const cat of Object.keys(categories).sort()) {
       helpMsg += `📂 ${cat}:\n${formatCategory(categories[cat])}\n\n`;
@@ -87,7 +88,7 @@ module.exports.run = async function ({ api, event, args, global }) {
 
     helpMsg += `ℹ️ use "${prefix}help [command]" for more info\n`;
     helpMsg += `🤖 bot by hassan\n`;
-    helpMsg += `≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋≋`;
+    helpMsg += `󰂆 󰟯 󰟰 󰟷 󰟺 󰟵 󰟫`;
 
     return api.sendMessage(helpMsg.trim(), event.threadID, event.messageID);
 
