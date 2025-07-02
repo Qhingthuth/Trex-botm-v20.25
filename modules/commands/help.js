@@ -7,7 +7,7 @@ module.exports.config = {
   description: "Shows all available commands or help for one",
   hasPermssion: 0,
   cooldowns: 5,
-  aliases: ["h", "cmds", "commands"]
+  aliases: ["h"]
 };
 
 module.exports.run = async function ({ api, event, args, global }) {
