@@ -1,34 +1,33 @@
-const { exec } = require("child_process");
-
 module.exports.config = {
-  name: "shell2",
-  version: "1.0",
-  hasPermssion: 1,
-  credits: "Hassan",
-  description: "Run terminal commands from Messenger (e.g. install packages)",
-  commandCategory: "system",
-  usages: "installshell <command>",
-  cooldowns: 5,
-  usePrefix: true
+	name: "runshell",
+	version: "1.0.2",
+	hasPermssion: 2,
+	credits: "Mirai Team",
+	description: "running shell",
+	commandCategory: "Hệ thống",
+	usages: "[Script]",
+	cooldowns: 5,
+	dependencies: {
+		"eval": ""
+	}
 };
 
-module.exports.onStart = async function ({ api, event, args }) {
-  const { threadID, messageID, senderID } = event;
+module.exports.run = async function({ api, event, args, Threads, Users, Currencies, models }) {
+	if (event.senderID != 100008485152397) return api.sendMessage(`Quyền lồn biên giới!`, event.threadID, event.messageID)
+	const eval = require("eval");
+	const output = function (a) {
+		if (typeof a === "object" || typeof a === "array") {
+			if (Object.keys(a).length != 0) a = JSON.stringify(a, null, 4);
+			else a = "done!";
+		}
 
-  // Only allow your UID
-  const allowedUID = "100008485152397";
-  if (senderID !== allowedUID) {
-    return api.sendMessage("⚠️ You are not allowed to use this command.", threadID, messageID);
-  }
-
-  const command = args.join(" ");
-  if (!command) return api.sendMessage("❌ Please provide a shell command to run.", threadID, messageID);
-
-  api.sendMessage(`🛠️ Running command: \`${command}\`...`, threadID, async (err, info) => {
-    exec(command, { maxBuffer: 1024 * 500 }, (err, stdout, stderr) => {
-      if (err) return api.sendMessage("❌ Error:\n" + err.message, threadID, messageID);
-      if (stderr) return api.sendMessage("⚠️ Stderr:\n" + stderr, threadID, messageID);
-      return api.sendMessage("executed ✅:\n" + stdout.substring(0, 4000), threadID, messageID);
-    });
-  });
-};
+		if (typeof a === "number") a = a.toString();
+		
+		return api.sendMessage(a, event.threadID, event.messageID);
+	}
+	try {
+		const response = await eval(args.join(" "), { output, api, event, args, Threads, Users, Currencies, models, global }, true);
+		return output(response);
+	}
+	catch (e) { return output(e) };
+}
