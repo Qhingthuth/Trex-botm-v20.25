@@ -1,4 +1,3 @@
-
 module.exports.config = {
   name: "help",
   commandCategory: "utility",
