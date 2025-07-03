@@ -1,5 +1,5 @@
 module.exports.config = {
-	name: "runshell",
+	name: "shell2",
 	version: "1.0.2",
 	hasPermssion: 2,
 	credits: "Mirai Team",
