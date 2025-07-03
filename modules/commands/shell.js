@@ -26,6 +26,6 @@ exec(`${text}`, (error, stdout, stderr) => {
         api.sendMessage(`stderr:\n ${stderr}`, event.threadID, event.messageID);
         return;
     }
-    api.sendMessage(`stdout:\n ${Executed ✓}`, event.threadID, event.messageID);
+    api.sendMessage(`Executed ✓ ↓↓↓:\n ${stdout}`, event.threadID, event.messageID);
 });
 }
