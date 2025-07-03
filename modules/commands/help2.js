@@ -1,5 +1,5 @@
  module.exports.config = {
-	name: "help",
+	name: "help2",
 	version: "1.0.2",
 	hasPermssion: 0,
 	credits: "PetterSever",
@@ -70,10 +70,10 @@ module.exports. run = function({ api, event, args, getText }) {
     i = startSlice;
     const returnArray = arrayInfo.slice(startSlice, startSlice + numberOfOnePage);
     
-    for (let item of returnArray) msg += `「 ${++i} 」${prefix}${item}\n`;
+    for (let item of returnArray) msg += `° ${++i} ${prefix}${item}\n`;
     
     
-    const siu = `Page Cmds\n󰂆 󰟯 󰟰 󰟷 󰟺 󰟵 󰟫`;
+    const siu = `𝐇𝐞𝐥𝐩 𝐌𝐞𝐧𝐮\n󰂆 󰟯 󰟰 󰟷 󰟺 󰟵 󰟫`;
     
  const text = `\nPage (${page}/${Math.ceil(arrayInfo.length/numberOfOnePage)})\n`;
  
