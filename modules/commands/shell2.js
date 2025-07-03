@@ -1,7 +1,7 @@
 const { exec } = require("child_process");
 
 module.exports.config = {
-  name: "shell",
+  name: "shell2",
   version: "1.0",
   hasPermssion: 1,
   credits: "Hassan",
